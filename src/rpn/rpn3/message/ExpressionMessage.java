@@ -1,4 +1,4 @@
-package rpn.rpn3;
+package rpn.rpn3.message;
 
 public class ExpressionMessage implements Message {
     public static final String MESSAGE_TYPE = "expression";

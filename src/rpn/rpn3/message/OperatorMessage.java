@@ -1,4 +1,4 @@
-package rpn.rpn3;
+package rpn.rpn3.message;
 
 import java.util.Stack;
 

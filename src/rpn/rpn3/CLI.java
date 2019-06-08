@@ -1,5 +1,9 @@
 package rpn.rpn3;
 
+import rpn.rpn3.bus.InMemoryBus;
+import rpn.rpn3.consumer.TokenizerConsumer;
+import rpn.rpn3.message.ExpressionMessage;
+
 import java.util.UUID;
 
 public class CLI {

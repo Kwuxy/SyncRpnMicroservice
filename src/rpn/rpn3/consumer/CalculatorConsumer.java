@@ -1,4 +1,9 @@
-import rpn.rpn3.*;
+package rpn.rpn3.consumer;
+
+import rpn.rpn3.message.Message;
+import rpn.rpn3.message.OperatorMessage;
+import rpn.rpn3.message.TokenMessage;
+import rpn.rpn3.bus.Bus;
 
 import java.util.HashMap;
 import java.util.Map;

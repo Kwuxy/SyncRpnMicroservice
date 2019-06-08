@@ -1,11 +1,11 @@
-package rpn.rpn3;
+package rpn.rpn3.message;
 
-public class EndOfToken implements Message {
+public class EndOfTokenMessage implements Message {
     private static final String MESSAGE_TYPE = "end of token";
 
     private final String expressionId;
 
-    public EndOfToken(String expressionId) {
+    public EndOfTokenMessage(String expressionId) {
         this.expressionId = expressionId;
     }
 
