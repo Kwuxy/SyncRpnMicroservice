@@ -1,4 +1,4 @@
-package rpn.rpn3;
+package rpn.rpn3.message;
 
 public interface Message {
     String messageType();

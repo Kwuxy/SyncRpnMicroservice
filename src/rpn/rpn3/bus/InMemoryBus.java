@@ -1,4 +1,7 @@
-package rpn.rpn3;
+package rpn.rpn3.bus;
+
+import rpn.rpn3.message.Message;
+import rpn.rpn3.consumer.Consumer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
