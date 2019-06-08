@@ -1,7 +1,7 @@
 package rpn.rpn3;
 
 public class TokenMessage implements Message {
-    private static final String MESSAGE_TYPE = "token";
+    public static final String MESSAGE_TYPE = "token";
 
     private final String token;
     private final String expressionId;
