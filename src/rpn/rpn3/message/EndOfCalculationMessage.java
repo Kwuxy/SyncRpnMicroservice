@@ -1,12 +1,12 @@
 package rpn.rpn3.message;
 
-public class EndOfCalculationException implements Message {
+public class EndOfCalculationMessage implements Message {
     public static final String MESSAGE_TYPE = "end of calculation";
 
     private final String expressionId;
     private final Double result;
 
-    public EndOfCalculationException(String expressionId, Double result) {
+    public EndOfCalculationMessage(String expressionId, Double result) {
         this.expressionId = expressionId;
         this.result = result;
     }
