@@ -44,7 +44,7 @@ public class CalculatorConsumer implements Consumer {
     }
 
     private void processResultMessage(ResultMessage resultMessage, Stack<Double> stack) {
-        bus.publish(new EndOfCalculationException(resultMessage.expressionId(), stack.pop()));
+        bus.publish(new EndOfCalculationMessage(resultMessage.expressionId(), resultMessage.operands().pop()));
     }
 
     private boolean tokenIsNumber(String token) {
