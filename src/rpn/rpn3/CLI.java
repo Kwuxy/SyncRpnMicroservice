@@ -14,10 +14,13 @@ public class CLI {
         CalculatorConsumer calculator = new CalculatorConsumer(bus);
         bus.subscribe(ExpressionMessage.MESSAGE_TYPE, new TokenizerConsumer(bus));
         bus.subscribe(TokenMessage.MESSAGE_TYPE, calculator);
+        bus.subscribe(EndOfTokenMessage.MESSAGE_TYPE, calculator);
         bus.subscribe("+", new PlusConsumer(bus));
         bus.subscribe(ResultMessage.MESSAGE_TYPE, calculator);
         bus.subscribe(EndOfCalculationMessage.MESSAGE_TYPE, client);
 
         client.calculate("1 2 +");
+        client.calculate("1 -2 +");
+        client.calculate("1 2 3 + +");
     }
 }

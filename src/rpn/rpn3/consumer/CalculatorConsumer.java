@@ -18,33 +18,52 @@ public class CalculatorConsumer implements Consumer {
 
     @Override
     public void receive(Message message) {
-        Stack<Double> stack = stacksByExpressionId.get(message.messageType());
-
-        if(stack == null) {
-            stack = new Stack<>();
-            stacksByExpressionId.put(message.messageType(), stack);
-        }
-
         if(message instanceof TokenMessage) {
-            processTokenMessage((TokenMessage) message, stack);
+            processTokenMessage((TokenMessage) message);
         }
 
         if(message instanceof ResultMessage) {
-            processResultMessage((ResultMessage) message, stack);
+            processResultMessage((ResultMessage) message);
+        }
+
+        if(message instanceof EndOfTokenMessage) {
+            processEndOfTokenMessage((EndOfTokenMessage) message);
         }
     }
 
-    private void processTokenMessage(TokenMessage tokenMessage, Stack<Double> stack) {
+    private void processTokenMessage(TokenMessage tokenMessage) {
+        System.out.println("Process TokenMessage");
+        Stack<Double> stack = stacksByExpressionId.get(tokenMessage.expressionId());
+
+        if(stack == null) {
+            stack = new Stack<>();
+            stacksByExpressionId.put(tokenMessage.expressionId(), stack);
+        }
+
         if(tokenIsNumber(tokenMessage.token())) {
             stack.push(Double.valueOf(tokenMessage.token()));
         }else{
             bus.publish(new OperatorMessage(stack, tokenMessage.token(), tokenMessage.expressionId()));
-            stack.clear();
+            //stack.clear();
         }
     }
 
-    private void processResultMessage(ResultMessage resultMessage, Stack<Double> stack) {
-        bus.publish(new EndOfCalculationMessage(resultMessage.expressionId(), resultMessage.operands().pop()));
+    private void processResultMessage(ResultMessage resultMessage) {
+        System.out.println("Process ResultMessage");
+        stacksByExpressionId.put(resultMessage.expressionId(), resultMessage.operands());
+    }
+
+    private void processEndOfTokenMessage(EndOfTokenMessage eoc) {
+        System.out.println("Process EndOfTokenMessage");
+        Stack<Double> stack = stacksByExpressionId.get(eoc.expressionId());
+
+        if(stack == null) {
+            //Throw Exception ?
+            //There is no result for the calculation
+            System.out.println("No result");
+        }
+
+        bus.publish(new EndOfCalculationMessage(eoc.expressionId(), stack.pop()));
     }
 
     private boolean tokenIsNumber(String token) {
