@@ -23,4 +23,12 @@ public class EndOfCalculationMessage implements Message {
     public Double result() {
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "EndOfCalculationMessage{" +
+                "expressionId='" + expressionId + '\'' +
+                ", result=" + result +
+                '}';
+    }
 }

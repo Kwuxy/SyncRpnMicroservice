@@ -26,4 +26,12 @@ public class ResultMessage implements Message {
     public String expressionId() {
         return expressionId;
     }
+
+    @Override
+    public String toString() {
+        return "ResultMessage{" +
+                "operands=" + operands +
+                ", expressionId='" + expressionId + '\'' +
+                '}';
+    }
 }

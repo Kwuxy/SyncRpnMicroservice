@@ -1,7 +1,7 @@
 package rpn.rpn3.message;
 
 public class EndOfTokenMessage implements Message {
-    private static final String MESSAGE_TYPE = "end of token";
+    public static final String MESSAGE_TYPE = "end of token";
 
     private final String expressionId;
 
@@ -16,5 +16,12 @@ public class EndOfTokenMessage implements Message {
 
     public String expressionId() {
         return expressionId;
+    }
+
+    @Override
+    public String toString() {
+        return "EndOfTokenMessage{" +
+                "expressionId='" + expressionId + '\'' +
+                '}';
     }
 }

@@ -26,4 +26,13 @@ public class OperatorMessage implements Message {
     public String expressionId() {
         return expressionId;
     }
+
+    @Override
+    public String toString() {
+        return "OperatorMessage{" +
+                "MESSAGE_TYPE='" + MESSAGE_TYPE + '\'' +
+                ", operands=" + operands +
+                ", expressionId='" + expressionId + '\'' +
+                '}';
+    }
 }

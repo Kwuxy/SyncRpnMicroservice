@@ -23,4 +23,12 @@ public class ExpressionMessage implements Message {
     public String expressionId() {
         return expressionId;
     }
+
+    @Override
+    public String toString() {
+        return "ExpressionMessage{" +
+                "expression='" + expression + '\'' +
+                ", expressionId='" + expressionId + '\'' +
+                '}';
+    }
 }
