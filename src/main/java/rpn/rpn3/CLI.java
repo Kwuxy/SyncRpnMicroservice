@@ -2,9 +2,9 @@ package rpn.rpn3;
 
 import rpn.rpn3.bus.InMemoryBus;
 import rpn.rpn3.consumer.*;
+import rpn.rpn3.consumer.operator.MinusConsumer;
+import rpn.rpn3.consumer.operator.PlusConsumer;
 import rpn.rpn3.message.*;
-
-import java.util.UUID;
 
 public class CLI {
     public static void main(String[] args) {
@@ -16,11 +16,14 @@ public class CLI {
         bus.subscribe(TokenMessage.MESSAGE_TYPE, calculator);
         bus.subscribe(EndOfTokenMessage.MESSAGE_TYPE, calculator);
         bus.subscribe("+", new PlusConsumer(bus));
+        bus.subscribe("-", new MinusConsumer(bus));
         bus.subscribe(ResultMessage.MESSAGE_TYPE, calculator);
         bus.subscribe(EndOfCalculationMessage.MESSAGE_TYPE, client);
 
         client.calculate("1 2 +");
         client.calculate("1 -2 +");
         client.calculate("1 2 3 + +");
+
+        client.calculate("3 2 -");
     }
 }

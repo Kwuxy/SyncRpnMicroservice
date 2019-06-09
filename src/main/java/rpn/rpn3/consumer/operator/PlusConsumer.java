@@ -1,6 +1,7 @@
-package rpn.rpn3.consumer;
+package rpn.rpn3.consumer.operator;
 
 import rpn.rpn3.bus.Bus;
+import rpn.rpn3.consumer.Consumer;
 import rpn.rpn3.exception.NotEnoughOperandException;
 import rpn.rpn3.message.Message;
 import rpn.rpn3.message.OperatorMessage;
