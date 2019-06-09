@@ -7,12 +7,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class InMemoryBus implements Bus {
     private Map<String, List<Consumer>> consumersByMessageType = new HashMap<>();
+    private Logger logger;
+
+    public InMemoryBus() {
+        this.logger = Logger.getLogger("rpn bus");
+    }
 
     @Override
     public void publish(Message message) {
+        logger.info("Publication of message : " + message.toString());
+        //System.out.println("Publication of message : " + message.toString());
         List<Consumer> consumers = consumersByMessageType.get(message.messageType());
 
         if(consumers == null) {
