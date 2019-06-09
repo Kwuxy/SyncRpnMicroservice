@@ -19,8 +19,7 @@ public class InMemoryBus implements Bus {
 
     @Override
     public void publish(Message message) {
-        logger.info("Publication of message : " + message.toString());
-        //System.out.println("Publication of message : " + message.toString());
+        //logger.info("Publication of message : " + message.toString());
         List<Consumer> consumers = consumersByMessageType.get(message.messageType());
 
         if(consumers == null) {

@@ -32,7 +32,6 @@ public class CalculatorConsumer implements Consumer {
     }
 
     private void processTokenMessage(TokenMessage tokenMessage) {
-        System.out.println("Process TokenMessage");
         Stack<Double> stack = stacksByExpressionId.get(tokenMessage.expressionId());
 
         if(stack == null) {
@@ -49,12 +48,10 @@ public class CalculatorConsumer implements Consumer {
     }
 
     private void processResultMessage(ResultMessage resultMessage) {
-        System.out.println("Process ResultMessage");
         stacksByExpressionId.put(resultMessage.expressionId(), resultMessage.operands());
     }
 
     private void processEndOfTokenMessage(EndOfTokenMessage eoc) {
-        System.out.println("Process EndOfTokenMessage");
         Stack<Double> stack = stacksByExpressionId.get(eoc.expressionId());
 
         if(stack == null) {
