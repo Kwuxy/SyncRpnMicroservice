@@ -18,6 +18,7 @@ public class CLI {
         bus.subscribe("-", new MinusConsumer(bus));
         bus.subscribe("ABS", new AbsConsumer(bus));
         bus.subscribe("/", new DivideConsumer(bus));
+        bus.subscribe("*", new MultiplicationConsumer(bus));
         bus.subscribe("DROP", new DropConsumer(bus));
         bus.subscribe("TIMES", new TimesConsumer(bus));
         bus.subscribe(ResultMessage.MESSAGE_TYPE, calculator);
@@ -37,5 +38,7 @@ public class CLI {
         client.calculate("1 3 + 5 DROP");
 
         client.calculate("6 3 TIMES + +");
+
+        client.calculate("3 5 *");
     }
 }
