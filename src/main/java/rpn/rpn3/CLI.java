@@ -21,6 +21,7 @@ public class CLI {
         bus.subscribe("*", new MultiplicationConsumer(bus));
         bus.subscribe("DROP", new DropConsumer(bus));
         bus.subscribe("TIMES", new TimesConsumer(bus));
+        bus.subscribe("SWAP", new SwapConsumer(bus));
         bus.subscribe(ResultMessage.MESSAGE_TYPE, calculator);
         bus.subscribe(EndOfCalculationMessage.MESSAGE_TYPE, client);
 
@@ -40,5 +41,7 @@ public class CLI {
         client.calculate("6 3 TIMES + +");
 
         client.calculate("3 5 *");
+
+        client.calculate("3 4 SWAP");
     }
 }
