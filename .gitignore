@@ -24,3 +24,7 @@ hs_err_pid*
 \.idea/
 
 *.iml
+
+out/production/SyncRpnMicroservice/META-INF/
+
+out/test/SyncRpnMicroservice/META-INF/
