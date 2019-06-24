@@ -51,5 +51,13 @@ public class CLI {
         client.calculate("1 +");
         client.calculate("+");
         client.calculate("+ 3 4 +");
+
+        client.calculate("1 3 4 +");
+
+        client.calculate("");
+
+        client.calculate("3 + 2");
+
+        client.calculate("3 log");
     }
 }

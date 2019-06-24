@@ -18,15 +18,21 @@ public class InMemoryBus implements Bus {
     }
 
     @Override
-    public void publish(Message message) {
+    public int publish(Message message) {
         //logger.info("Publication of message : " + message.toString());
+        int counter = 0;
         List<Consumer> consumers = consumersByMessageType.get(message.messageType());
 
         if(consumers == null) {
-            return;
+            return 0;
         }
 
-        consumers.forEach((consumer -> consumer.receive(message)));
+        for(Consumer consumer: consumers) {
+            consumer.receive(message);
+            counter++;
+        }
+
+        return counter;
     }
 
     @Override

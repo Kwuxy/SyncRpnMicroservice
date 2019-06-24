@@ -53,8 +53,14 @@ public class CalculatorConsumer implements Consumer {
             if(tokenIsNumber(tokenMessage.token())) {
                 stack.getObject().push(Double.valueOf(tokenMessage.token()));
             }else{
-                bus.publish(new OperatorMessage(stack.getObject(), tokenMessage.token(), tokenMessage.expressionId()));
+                int receiverNumber = bus.publish(new OperatorMessage(stack.getObject(),
+                        tokenMessage.token(), tokenMessage.expressionId()));
                 //stack.clear();
+
+                if(receiverNumber == 0) {
+                    bus.publish(new ErrorMessage("The operator '" + tokenMessage.token() + "' is not implemented",
+                            tokenMessage.expressionId()));
+                }
             }
         }
     }
