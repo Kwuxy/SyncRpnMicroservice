@@ -70,13 +70,22 @@ public class CalculatorConsumer implements Consumer {
         ObjectValidator<Stack<Double>> stack = stacksByExpressionId.get(eoc.expressionId());
 
         if(stack == null) {
-            //Throw Exception ?
-            //There is no result for the calculation
-            System.out.println("No result");
+            bus.publish(new ErrorMessage("Empty expression", eoc.expressionId()));
             return;
         }
 
         if(stack.isValid()) {
+            Stack operands = stack.getObject();
+            if(operands.size() < 1) {
+                bus.publish(new ErrorMessage("No result to provide", eoc.expressionId()));
+                return;
+            }
+
+            if(operands.size() > 1) {
+                bus.publish(new ErrorMessage("Not enough operators in the expression", eoc.expressionId()));
+                return;
+            }
+
             bus.publish(new EndOfCalculationMessage(eoc.expressionId(), stack.getObject().pop()));
         }
     }
