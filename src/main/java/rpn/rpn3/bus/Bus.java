@@ -4,6 +4,6 @@ import rpn.rpn3.consumer.Consumer;
 import rpn.rpn3.message.Message;
 
 public interface Bus {
-    void publish(Message message);
+    int publish(Message message);
     void subscribe(String messageType, Consumer consumer);
 }

@@ -2,6 +2,7 @@ package rpn.rpn3.consumer.operator;
 
 import rpn.rpn3.bus.Bus;
 import rpn.rpn3.consumer.Consumer;
+import rpn.rpn3.message.ErrorMessage;
 import rpn.rpn3.message.Message;
 import rpn.rpn3.message.OperatorMessage;
 import rpn.rpn3.message.ResultMessage;
@@ -20,8 +21,13 @@ public class DropConsumer implements Consumer {
         OperatorMessage operatorMessage = (OperatorMessage) message;
         Stack<Double> operands = operatorMessage.operands();
 
-        operands.pop();
+        if(operands.size() < 1) {
+            bus.publish(new ErrorMessage("Not enough operands for operator 'DROP'. Expected 1 got 0",
+                    operatorMessage.expressionId()));
+            return;
+        }
 
+        operands.pop();
         bus.publish(new ResultMessage(operands, operatorMessage.expressionId()));
     }
 }
