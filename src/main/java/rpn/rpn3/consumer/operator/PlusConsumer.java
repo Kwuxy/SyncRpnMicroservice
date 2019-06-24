@@ -22,7 +22,7 @@ public class PlusConsumer implements Consumer {
         OperatorMessage operatorMessage = (OperatorMessage) message;
         Stack<Double> operands = operatorMessage.operands();
         Message messageToSend;
-        Integer operandCounter = 0;
+        int operandCounter = 0;
 
         try {
             Double operand1 = operands.pop();
