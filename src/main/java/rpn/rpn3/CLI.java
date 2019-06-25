@@ -59,5 +59,7 @@ public class CLI {
         client.calculate("3 + 2");
 
         client.calculate("3 log");
+
+        client.calculate("1 DROP");
     }
 }

@@ -38,7 +38,10 @@ public class CalculatorConsumer implements Consumer {
 
     private void processErrorMessage(ErrorMessage errorMessage) {
         ObjectValidator<Stack<Double>> stack = stacksByExpressionId.get(errorMessage.expressionId());
-        stack.validate(false);
+
+        if(stack != null) {
+            stack.validate(false);
+        }
     }
 
     private void processTokenMessage(TokenMessage tokenMessage) {
